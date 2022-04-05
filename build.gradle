@@ -1,0 +1,49 @@
+plugins {
+    id 'fabric-loom' version '0.12-SNAPSHOT'
+    id 'maven-publish'
+    id 'org.jetbrains.kotlin.jvm' version '1.6.10'
+    id 'io.github.juuxel.loom-quiltflower' version '1.6.1'
+}
+
+version = "1.0"
+group = "com.squagward"
+archivesBaseName = "examplemod"
+
+repositories {
+    mavenCentral()
+    maven { url "https://repo.sk1er.club/repository/maven-public" }
+    maven { url "https://pkgs.dev.azure.com/djtheredstoner/DevAuth/_packaging/public/maven/v1" }
+}
+
+dependencies {
+    minecraft "com.mojang:minecraft:${project.minecraft_version}"
+    mappings "net.fabricmc:yarn:${project.yarn_mappings}:v2"
+
+    modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    modImplementation "net.fabricmc:fabric-language-kotlin:1.7.1+kotlin.1.6.10"
+
+    modImplementation include("gg.essential:loader-fabric:1.0.0")
+    modCompileOnly "gg.essential:essential-1.18.1-fabric:2414"
+
+    modRuntimeOnly "me.djtheredstoner:DevAuth-fabric:1.0.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+}
+
+processResources {
+    inputs.property "mod_id", archivesBaseName
+    inputs.property "version", project.version
+    filteringCharset "UTF-8"
+
+    filesMatching("fabric.mod.json") {
+        expand (
+            "mod_id": archivesBaseName,
+            "version": project.version
+        )
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    it.options.release = 17
+}
+

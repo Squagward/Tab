@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "${mod_id}",
+  "version": "${version}",
+  "name": "ExampleMod",
+  "description": "Example mod so I don't have to go through this pain again.",
+  "authors": [
+    "Squagward"
+  ],
+  "contact": {
+    "website": "https://github.com/Squagward/ExampleMod",
+    "repo": "https://github.com/Squagward/ExampleMod"
+  },
+  "license": "The Unlicense",
+  "environment": "client",
+  "entrypoints": {
+    "preLaunch": [
+      "gg.essential.loader.stage0.EssentialSetupPreLaunch"
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "com.squagward.examplemod.ExampleMod"
+      }
+    ]
+  },
+  "mixins": [
+    "examplemod.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=0.13.3",
+    "fabric": "*",
+    "minecraft": "1.18.x",
+    "fabric-language-kotlin": ">=1.7.1+kotlin.1.6.10",
+    "java": ">=17"
+  }
+}
