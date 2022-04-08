@@ -20,11 +20,10 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
     @Property(
         type = PropertyType.NUMBER,
         name = "Tab Index",
-        description = "The index of the tab in the tab list",
+        description = "The index of the tab in the tab list. Set to -1 for normal position.",
         category = "General",
         min = -1,
-        max = 1000,
-        hidden = true,
+        max = 80,
     )
     var tabIndex = -1
 
@@ -37,7 +36,6 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
     )
     var useCustomName = false
 
-    @JvmStatic
     @Property(
         type = PropertyType.TEXT,
         name = "Tab Name",
@@ -46,11 +44,30 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
     )
     var tabName: String = Tab.playerName
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Toggle Tab Header",
+        description = "Toggle the tab header on or off",
+        category = "General"
+    )
+    var toggleTabHeader = true
+
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Toggle Tab Footer",
+        description = "Toggle the tab footer on or off",
+        category = "General"
+    )
+    var toggleTabFooter = true
+
     init {
         initialize()
 
         addDependency("useCustomName", "toggleMod")
         addDependency("tabName", "toggleMod")
+        addDependency("toggleTabHeader", "toggleMod")
+        addDependency("toggleTabFooter", "toggleMod")
+
         addDependency("tabName", "useCustomName")
     }
 }
