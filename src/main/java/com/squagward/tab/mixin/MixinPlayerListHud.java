@@ -35,10 +35,8 @@ public class MixinPlayerListHud {
 
     @ModifyVariable(
             method = "render",
-            at = @At(
-                    value = "STORE",
-                    target = "Lcom/google/common/collect/Ordering;sortedCopy(Ljava/lang/Iterable;)Ljava/util/List;"
-            )
+            at = @At("STORE"),
+            index = 6
     )
     public List<PlayerListEntry> setUserIndex(List<PlayerListEntry> value) {
         ClientPlayNetworkHandler networkHandler = Tab.getMc().getNetworkHandler();
