@@ -8,10 +8,10 @@
     "Squagward"
   ],
   "contact": {
-    "website": "https://github.com/Squagward/ExampleMod",
-    "repo": "https://github.com/Squagward/ExampleMod"
+    "website": "https://github.com/Squagward/Tab",
+    "repo": "https://github.com/Squagward/Tab"
   },
-  "license": "The Unlicense",
+  "license": "MIT",
   "environment": "client",
   "entrypoints": {
     "preLaunch": [
@@ -20,12 +20,12 @@
     "client": [
       {
         "adapter": "kotlin",
-        "value": "com.squagward.examplemod.ExampleMod"
+        "value": "com.squagward.tab.Tab"
       }
     ]
   },
   "mixins": [
-    "examplemod.mixins.json"
+    "tab.mixins.json"
   ],
   "depends": {
     "fabricloader": ">=0.13.3",

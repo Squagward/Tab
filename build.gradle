@@ -7,7 +7,7 @@ plugins {
 
 version = "1.0"
 group = "com.squagward"
-archivesBaseName = "examplemod"
+archivesBaseName = "tab"
 
 repositories {
     mavenCentral()
