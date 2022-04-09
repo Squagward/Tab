@@ -60,6 +60,14 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
     )
     var toggleTabFooter = true
 
+    @Property(
+        type = PropertyType.SWITCH,
+        name = "Shift Tab List Down",
+        description = "Shift the tab list down until below all bossbars.",
+        category = "General"
+    )
+    var shiftTabDown = false
+
     init {
         initialize()
 

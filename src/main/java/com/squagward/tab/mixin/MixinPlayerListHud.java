@@ -46,6 +46,7 @@ public class MixinPlayerListHud {
         PlayerListEntry entry = networkHandler.getPlayerListEntry(Tab.getPlayerUUID());
 
         if (entry == null) return value;
+
         int originalIndex = Config.getTabIndex();
         if (originalIndex < 0) return value;
 
@@ -55,5 +56,14 @@ public class MixinPlayerListHud {
         value.add(index, entry);
 
         return value;
+    }
+
+    @ModifyVariable(
+            method = "render",
+            at = @At("STORE"),
+            index = 16
+    )
+    public int setYOffset(int value) {
+        return PlayerListHudHook.shiftTabDown(value);
     }
 }

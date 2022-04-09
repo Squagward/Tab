@@ -4,7 +4,7 @@
   "package": "com.squagward.tab.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
-    "ChatHudAccessor",
+    "BossBarHudAccessor",
     "MixinPlayerListHud"
   ],
   "injectors": {
