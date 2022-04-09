@@ -3,10 +3,15 @@ package com.squagward.tab.hooks
 import com.squagward.tab.Tab
 import com.squagward.tab.config.Config
 import com.squagward.tab.mixin.BossBarHudAccessor
+import com.squagward.tab.mixin.PlayerListHudAccessor
 import com.squagward.tab.util.Utils
 import net.minecraft.text.LiteralText
+import net.minecraft.text.Text
 
 object PlayerListHudHook {
+    private var previousHeader: Text? = null
+    private var previousFooter: Text? = null
+
     @JvmStatic
     fun setPlayerName() {
         val entry = Tab.mc.networkHandler?.getPlayerListEntry(Tab.playerUUID)
@@ -19,14 +24,34 @@ object PlayerListHudHook {
     @JvmStatic
     fun disableHeader() {
         if (!Config.toggleTabHeader) {
-            Utils.getTabHud().setHeader(null)
+            val tabHud = Utils.getTabHud()
+            val tabHudAccessor = tabHud as PlayerListHudAccessor
+
+            if (tabHudAccessor.header != null) {
+                previousHeader = tabHudAccessor.header
+            }
+
+            tabHud.setHeader(null)
+        } else if (previousHeader != null) {
+            Utils.getTabHud().setHeader(previousHeader)
+            previousHeader = null
         }
     }
 
     @JvmStatic
     fun disableFooter() {
         if (!Config.toggleTabFooter) {
-            Utils.getTabHud().setFooter(null)
+            val tabHud = Utils.getTabHud()
+            val tabHudAccessor = tabHud as PlayerListHudAccessor
+
+            if (tabHudAccessor.footer != null) {
+                previousFooter = tabHudAccessor.footer
+            }
+
+            tabHud.setFooter(null)
+        } else if (previousFooter != null) {
+            Utils.getTabHud().setFooter(previousFooter)
+            previousFooter = null
         }
     }
 
