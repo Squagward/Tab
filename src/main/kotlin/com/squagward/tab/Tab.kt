@@ -2,8 +2,10 @@ package com.squagward.tab
 
 import com.squagward.tab.command.TabCommand
 import com.squagward.tab.config.Config
+import com.squagward.tab.hooks.PlayerListHudHook
 import com.squagward.tab.util.Utils
 import net.fabricmc.api.ClientModInitializer
+import net.fabricmc.fabric.api.client.rendering.v1.WorldRenderEvents
 import net.minecraft.client.MinecraftClient
 import java.util.*
 
@@ -22,6 +24,13 @@ object Tab : ClientModInitializer {
             Config.preload()
 
             TabCommand.register()
+        }
+
+        WorldRenderEvents.LAST.register {
+            PlayerListHudHook.apply {
+                previousHeader = null
+                previousFooter = null
+            }
         }
     }
 }

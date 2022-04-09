@@ -9,8 +9,8 @@ import net.minecraft.text.LiteralText
 import net.minecraft.text.Text
 
 object PlayerListHudHook {
-    private var previousHeader: Text? = null
-    private var previousFooter: Text? = null
+    internal var previousHeader: Text? = null
+    internal var previousFooter: Text? = null
 
     @JvmStatic
     fun setPlayerName() {
