@@ -45,6 +45,7 @@ public class MixinPlayerListHud {
 
         PlayerListEntry entry = networkHandler.getPlayerListEntry(Tab.getPlayerUUID());
 
+        if (entry == null) return value;
         int originalIndex = Config.getTabIndex();
         if (originalIndex < 0) return value;
 
