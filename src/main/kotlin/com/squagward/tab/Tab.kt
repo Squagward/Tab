@@ -19,7 +19,6 @@ object Tab : ClientModInitializer {
 
     override fun onInitializeClient() {
         MinecraftClient.getInstance().send {
-            Config.initialize()
             Config.preload()
 
             TabCommand.register()
