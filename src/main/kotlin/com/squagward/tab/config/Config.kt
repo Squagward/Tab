@@ -11,10 +11,10 @@ object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
     @Property(
         type = PropertyType.SWITCH,
         name = "Toggle Tab Mod",
-        description = "Toggle the mod on or off",
+        description = "Toggle the mod on or off.",
         category = "General"
     )
-    var toggleMod = true
+    var toggleMod = false
 
     @JvmStatic
     @Property(
@@ -30,24 +30,32 @@ object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
     @JvmStatic
     @Property(
         type = PropertyType.SWITCH,
-        name = "Use Custom Tab Name",
-        description = "Should the tab name be custom?",
+        name = "Toggle Custom Tab Name",
+        description = "Set whether or not to use the custom tab name.",
         category = "General",
     )
     var useCustomName = false
 
     @Property(
         type = PropertyType.TEXT,
-        name = "Tab Name",
-        description = "The custom name of you in tab",
+        name = "Custom Tab Name",
+        description = "Set your custom name in tab.",
         category = "General",
     )
     var tabName: String = Tab.playerName
 
     @Property(
         type = PropertyType.SWITCH,
+        name = "Shift Tab Down",
+        description = "Shift the tab list below all boss bars.",
+        category = "General"
+    )
+    var shiftTabDown = false
+
+    @Property(
+        type = PropertyType.SWITCH,
         name = "Toggle Tab Header",
-        description = "Toggle the tab header on or off",
+        description = "Toggle the tab header on or off.",
         category = "General"
     )
     var toggleTabHeader = true
@@ -55,18 +63,10 @@ object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
     @Property(
         type = PropertyType.SWITCH,
         name = "Toggle Tab Footer",
-        description = "Toggle the tab footer on or off",
+        description = "Toggle the tab footer on or off.",
         category = "General"
     )
     var toggleTabFooter = true
-
-    @Property(
-        type = PropertyType.SWITCH,
-        name = "Shift Tab Down",
-        description = "Shift the tab list down until below all bossbars.",
-        category = "General"
-    )
-    var shiftTabDown = false
 
     init {
         initialize()

@@ -31,15 +31,15 @@ object PlayerListHudHook {
     }
 
     @JvmStatic
-    fun shiftTabDown(original: Int): Int {
+    fun shiftTabDown(y: Int): Int {
         if (!Config.shiftTabDown) {
-            return original
+            return y
         }
 
         val bossBarHud = Tab.mc.inGameHud.bossBarHud as BossBarHudAccessor
 
         val totalHeight = 12 + 19 * bossBarHud.bossBars.size - 9
 
-        return totalHeight.coerceIn(original, Tab.mc.window.height / 3)
+        return totalHeight.coerceIn(y, Tab.mc.window.height / 3)
     }
 }

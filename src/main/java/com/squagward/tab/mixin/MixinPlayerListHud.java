@@ -41,22 +41,22 @@ public class MixinPlayerListHud {
             at = @At("STORE"),
             index = 6
     )
-    public List<PlayerListEntry> setUserIndex(List<PlayerListEntry> value) {
+    public List<PlayerListEntry> setUserIndex(List<PlayerListEntry> playerList) {
         int originalIndex = Config.getTabIndex();
         ClientPlayNetworkHandler networkHandler = Tab.getMc().getNetworkHandler();
 
-        if (!Config.getToggleMod() || networkHandler == null || originalIndex < 0) return value;
+        if (!Config.getToggleMod() || networkHandler == null || originalIndex < 0) return playerList;
 
         PlayerListEntry entry = networkHandler.getPlayerListEntry(Tab.getPlayerUUID());
 
-        if (entry == null) return value;
+        if (entry == null) return playerList;
 
-        int index = MathHelper.clamp(originalIndex, 0, value.size() - 1);
+        int index = MathHelper.clamp(originalIndex, 0, playerList.size() - 1);
 
-        value.remove(entry);
-        value.add(index, entry);
+        playerList.remove(entry);
+        playerList.add(index, entry);
 
-        return value;
+        return playerList;
     }
 
     @ModifyVariable(
@@ -64,7 +64,7 @@ public class MixinPlayerListHud {
             at = @At("STORE"),
             index = 16
     )
-    public int setYOffset(int value) {
-        return PlayerListHudHook.shiftTabDown(value);
+    public int setYOffset(int y) {
+        return PlayerListHudHook.shiftTabDown(y);
     }
 }
