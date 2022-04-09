@@ -20,7 +20,10 @@ import java.util.List;
 
 @Mixin(PlayerListHud.class)
 public class MixinPlayerListHud {
-    @Inject(method = "render", at = @At("HEAD"))
+    @Inject(
+            method = "render",
+            at = @At("HEAD")
+    )
     public void onRender(
             MatrixStack matrices,
             int scaledWindowWidth,
@@ -39,16 +42,14 @@ public class MixinPlayerListHud {
             index = 6
     )
     public List<PlayerListEntry> setUserIndex(List<PlayerListEntry> value) {
+        int originalIndex = Config.getTabIndex();
         ClientPlayNetworkHandler networkHandler = Tab.getMc().getNetworkHandler();
 
-        if (!Config.getToggleMod() || networkHandler == null) return value;
+        if (!Config.getToggleMod() || networkHandler == null || originalIndex < 0) return value;
 
         PlayerListEntry entry = networkHandler.getPlayerListEntry(Tab.getPlayerUUID());
 
         if (entry == null) return value;
-
-        int originalIndex = Config.getTabIndex();
-        if (originalIndex < 0) return value;
 
         int index = MathHelper.clamp(originalIndex, 0, value.size() - 1);
 

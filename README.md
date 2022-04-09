@@ -1,16 +1,10 @@
-Example Fabric 1.18.2 Mod
-========================
-Contains:
-- Essential
-- QuiltFlower decompiler
-- Kotlin
-- If you want DevAuth, just add the jar to run/mods.
-  - [Here's the link](https://github.com/DJtheRedstoner/DevAuth/releases/latest)
-
-# VM args
-```
--Dfabric.dli.config=PATH TO YOUR DIRECTORY\.gradle\loom-cache\launch.cfg
--Dfabric.dli.env=client
--Dfabric.dli.main=net.fabricmc.loader.impl.launch.knot.KnotClient
--Ddevauth.enabled=true (if you want DevAuth)
-```
+Tab
+========
+<details>
+  <summary>Feature List</summary>
+- Set specific tab index. Set value to -1 to put name in original position. (default: -1)
+- Set tab name. (default: Player Name)
+- Toggle tab header. (default: true)
+- Toggle tab footer. (default: true)
+- Shift tab position beneath boss bars. (default: false)
+</details>

@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "id": "${mod_id}",
   "version": "${version}",
-  "name": "ExampleMod",
-  "description": "Example mod so I don't have to go through this pain again.",
+  "name": "Tab",
+  "description": "A mod adding multiple features to the tab list. /tab for settings.",
   "authors": [
     "Squagward"
   ],
