@@ -8,10 +8,11 @@
     "Squagward"
   ],
   "contact": {
-    "website": "https://github.com/Squagward/Tab",
-    "repo": "https://github.com/Squagward/Tab"
+    "homepage": "https://github.com/Squagward/Tab",
+    "issues": "https://github.com/Squagward/Tab/issues"
   },
   "license": "MIT",
+  "icon": "assets/tab/icon.png",
   "environment": "client",
   "entrypoints": {
     "preLaunch": [
