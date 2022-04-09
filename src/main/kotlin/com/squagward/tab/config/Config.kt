@@ -6,12 +6,12 @@ import gg.essential.vigilance.data.Property
 import gg.essential.vigilance.data.PropertyType
 import java.io.File
 
-object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings") {
+object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
     @JvmStatic
     @Property(
         type = PropertyType.SWITCH,
-        name = "Toggle Mod",
-        description = "Toggle the Example Mod on or off",
+        name = "Toggle Tab Mod",
+        description = "Toggle the mod on or off",
         category = "General"
     )
     var toggleMod = true
@@ -62,7 +62,7 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
 
     @Property(
         type = PropertyType.SWITCH,
-        name = "Shift Tab List Down",
+        name = "Shift Tab Down",
         description = "Shift the tab list down until below all bossbars.",
         category = "General"
     )
@@ -71,11 +71,11 @@ object Config : Vigilant(File("./config/ExampleMod.toml"), "Example Mod Settings
     init {
         initialize()
 
+        addDependency("tabIndex", "toggleMod")
         addDependency("useCustomName", "toggleMod")
         addDependency("tabName", "toggleMod")
         addDependency("toggleTabHeader", "toggleMod")
         addDependency("toggleTabFooter", "toggleMod")
-
-        addDependency("tabName", "useCustomName")
+        addDependency("shiftTabDown", "toggleMod")
     }
 }
