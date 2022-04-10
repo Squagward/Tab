@@ -18,7 +18,7 @@ public class ClientPlayNetworkHandlerMixin {
             method = "clearWorld",
             at = @At("HEAD")
     )
-    public void onWorldUnload(CallbackInfo ci) {
+    private void onWorldUnload(CallbackInfo ci) {
         if (world != null) {
             PlayerListHudHook.setPreviousHeader(null);
             PlayerListHudHook.setPreviousFooter(null);

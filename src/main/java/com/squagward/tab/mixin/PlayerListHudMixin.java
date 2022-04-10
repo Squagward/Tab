@@ -22,7 +22,7 @@ public class PlayerListHudMixin {
             method = "render",
             at = @At("HEAD")
     )
-    public void onRender(
+    private void onRender(
             MatrixStack matrices,
             int scaledWindowWidth,
             Scoreboard scoreboard,
@@ -34,12 +34,13 @@ public class PlayerListHudMixin {
         PlayerListHudHook.disableFooter();
     }
 
+    @SuppressWarnings("InvalidInjectorMethodSignature")
     @ModifyVariable(
             method = "render",
-            at = @At("STORE"),
-            index = 6
+            at = @At(value = "STORE", ordinal = 0),
+            ordinal = 0
     )
-    public List<PlayerListEntry> setUserIndex(List<PlayerListEntry> playerList) {
+    private List<PlayerListEntry> setUserIndex(List<PlayerListEntry> playerList) {
         int originalIndex = Config.getTabIndex();
         ClientPlayNetworkHandler networkHandler = Tab.getMc().getNetworkHandler();
 
@@ -57,11 +58,12 @@ public class PlayerListHudMixin {
         return playerList;
     }
 
-    @ModifyConstant(
+    @ModifyVariable(
             method = "render",
-            constant = @Constant(intValue = 10, ordinal = 0)
+            at = @At(value = "STORE", ordinal = 0),
+            ordinal = 9
     )
-    public int setYOffset(int y) {
-        return PlayerListHudHook.shiftTabDown(y);
+    private int setYOffset(int q) {
+        return PlayerListHudHook.shiftTabDown(q);
     }
 }
