@@ -11,9 +11,7 @@ import net.minecraft.scoreboard.Scoreboard;
 import net.minecraft.scoreboard.ScoreboardObjective;
 import net.minecraft.util.math.MathHelper;
 import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
+import org.spongepowered.asm.mixin.injection.*;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.List;
@@ -59,10 +57,9 @@ public class PlayerListHudMixin {
         return playerList;
     }
 
-    @ModifyVariable(
+    @ModifyConstant(
             method = "render",
-            at = @At("STORE"),
-            index = 16
+            constant = @Constant(intValue = 10, ordinal = 0)
     )
     public int setYOffset(int y) {
         return PlayerListHudHook.shiftTabDown(y);

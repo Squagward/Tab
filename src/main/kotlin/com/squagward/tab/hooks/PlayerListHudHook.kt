@@ -11,8 +11,12 @@ import net.minecraft.text.Text
 object PlayerListHudHook {
     @JvmStatic
     var previousHeader: Text? = null
+
     @JvmStatic
     var previousFooter: Text? = null
+
+    @JvmStatic
+    var bossBarHeights: Int? = null
 
     @JvmStatic
     fun setPlayerName() {
@@ -59,14 +63,12 @@ object PlayerListHudHook {
 
     @JvmStatic
     fun shiftTabDown(y: Int): Int {
-        if (!Config.shiftTabDown) {
+        val bossBarHud = Tab.mc.inGameHud.bossBarHud as BossBarHudAccessor
+
+        if (!Config.shiftTabDown || bossBarHud.bossBars.isEmpty()) {
             return y
         }
 
-        val bossBarHud = Tab.mc.inGameHud.bossBarHud as BossBarHudAccessor
-
-        val totalHeight = 12 + 19 * bossBarHud.bossBars.size - 9
-
-        return totalHeight.coerceIn(y, Tab.mc.window.height / 3)
+        return bossBarHeights!! - 10
     }
 }

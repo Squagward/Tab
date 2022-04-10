@@ -5,9 +5,10 @@
   "compatibilityLevel": "JAVA_17",
   "mixins": [
     "BossBarHudAccessor",
+    "BossBarHudMixin",
     "ClientPlayNetworkHandlerMixin",
-    "PlayerListHudMixin",
-    "PlayerListHudAccessor"
+    "PlayerListHudAccessor",
+    "PlayerListHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1

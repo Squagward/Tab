@@ -22,7 +22,7 @@ public class ClientPlayNetworkHandlerMixin {
         if (world != null) {
             PlayerListHudHook.setPreviousHeader(null);
             PlayerListHudHook.setPreviousFooter(null);
-            System.out.println("world unloaded");
+            PlayerListHudHook.setBossBarHeights(null);
         }
     }
 }
