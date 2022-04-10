@@ -25,12 +25,5 @@ object Tab : ClientModInitializer {
 
             TabCommand.register()
         }
-
-        WorldRenderEvents.LAST.register {
-            PlayerListHudHook.apply {
-                previousHeader = null
-                previousFooter = null
-            }
-        }
     }
 }

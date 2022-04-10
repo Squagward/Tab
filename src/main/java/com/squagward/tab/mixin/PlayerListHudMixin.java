@@ -19,7 +19,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(PlayerListHud.class)
-public class MixinPlayerListHud {
+public class PlayerListHudMixin {
     @Inject(
             method = "render",
             at = @At("HEAD")
