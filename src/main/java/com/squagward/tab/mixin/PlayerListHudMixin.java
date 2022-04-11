@@ -44,11 +44,15 @@ public class PlayerListHudMixin {
         int originalIndex = Config.getTabIndex();
         ClientPlayNetworkHandler networkHandler = Tab.getMc().getNetworkHandler();
 
-        if (!Config.getToggleMod() || networkHandler == null || originalIndex < 0) return playerList;
+        if (!Config.getToggleMod() || networkHandler == null || !Config.getToggleCustomTabIndex()) return playerList;
 
         PlayerListEntry entry = networkHandler.getPlayerListEntry(Tab.getPlayerUUID());
 
         if (entry == null) return playerList;
+
+        if (originalIndex < 0) {
+            originalIndex += playerList.size();
+        }
 
         int index = MathHelper.clamp(originalIndex, 0, playerList.size() - 1);
 

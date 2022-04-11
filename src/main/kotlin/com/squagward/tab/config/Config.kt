@@ -3,10 +3,12 @@ package com.squagward.tab.config
 import com.squagward.tab.Tab
 import gg.essential.vigilance.Vigilant
 import gg.essential.vigilance.data.Property
+import gg.essential.vigilance.data.PropertyData
 import gg.essential.vigilance.data.PropertyType
+import gg.essential.vigilance.data.SortingBehavior
 import java.io.File
 
-object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
+object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings", sortingBehavior = Sort) {
     @JvmStatic
     @Property(
         type = PropertyType.SWITCH,
@@ -18,14 +20,23 @@ object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
 
     @JvmStatic
     @Property(
+        type = PropertyType.SWITCH,
+        name = "Toggle Custom Tab Index",
+        description = "Toggle custom tab index on or off.",
+        category = "General"
+    )
+    var toggleCustomTabIndex = false
+
+    @JvmStatic
+    @Property(
         type = PropertyType.NUMBER,
         name = "Tab Index",
-        description = "The index of the tab in the tab list. Set to -1 for normal position.",
+        description = "The index of the tab in the tab list. Set to negative numbers to be the n-th from the end.",
         category = "General",
-        min = -1,
+        min = -80,
         max = 80,
     )
-    var tabIndex = -1
+    var tabIndex = 0
 
     @JvmStatic
     @Property(
@@ -77,5 +88,14 @@ object Config : Vigilant(File("./config/Tab.toml"), "Tab Settings") {
         addDependency("toggleTabHeader", "toggleMod")
         addDependency("toggleTabFooter", "toggleMod")
         addDependency("shiftTabDown", "toggleMod")
+    }
+}
+
+object Sort : SortingBehavior() {
+    override fun getPropertyComparator(): Comparator<in PropertyData> {
+        // Sort in the order declared in the config file
+        return Comparator { _, _ ->
+            1
+        }
     }
 }
